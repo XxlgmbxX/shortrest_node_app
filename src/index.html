@@ -575,7 +575,7 @@ const handleLogin = (event) => {
     user.name = loginInput.value;
     login.style.display = "none";
 
-    websocket = new WebSocket(`wss://shortrest-node-8mbaplfeg-xxlgmbxxs-projects.vercel.app`);
+    websocket = new WebSocket(`wss://shortrest-node-app.vercel.app`);
 
     websocket.onmessage = processMessage;
 

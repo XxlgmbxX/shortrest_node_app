@@ -4,9 +4,10 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "node src/index.js",
-    "build": "babel src -d public"
+    "build": "babel src -d lib"
   },
   "author": "",
   "license": "ISC",
@@ -14,5 +15,11 @@
     "express": "^4.19.2",
     "dotenv": "^16.4.5",
     "ws": "^8.16.0"
+  },
+
+  "devDependencies": {
+    "@babel/cli": "^7.24.1",
+    "@babel/core": "^7.24.3",
+    "@babel/preset-env": "^7.24.3"
   }
 }

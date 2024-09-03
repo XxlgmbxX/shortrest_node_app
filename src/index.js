@@ -15,7 +15,7 @@ server.listen(port, () => {
 
 // Página HTML
 server.get("/", (_req, res) => {
-    res.sendFile(path.join(__dirname, 'src', 'index.html'));
+    res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 server.use((_req, res) => {

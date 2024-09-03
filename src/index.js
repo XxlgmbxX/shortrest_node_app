@@ -5,8 +5,9 @@ require("dotenv").config()
 
 //
 
-const server = express()
 const port = process.env.PORT || 3000
+const server = express()
+server.use(express.static(path.join(__dirname, '..', 'public')))
 
 //
 
@@ -16,8 +17,9 @@ const serverExpress = server.listen(port, () => {
 })
 
 //Arquivo html
+
 server.get("/", (_req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'))
+    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 })
 
 //

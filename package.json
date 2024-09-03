@@ -2,15 +2,15 @@
   "name": "shortrest_node_app",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "src/index.js",
   "engines": {
   "node": "18"
   },
   "scripts": {
-    "start": "node index.js",
+    "start": "node src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "node index.js",
-    "build": "babel -d lib"
+    "dev": "node src/index.js",
+    "build": "babel src -d lib"
   },
   "author": "",
   "license": "ISC",

@@ -1,42 +1,34 @@
-const express = require("express")
-const path = require('path')
-const { WebSocketServer } = require("ws")
-require("dotenv").config()
+const express = require("express");
+const path = require('path');
+const { WebSocketServer } = require("ws");
+require("dotenv").config();
 
-//
+const server = express();
+const port = process.env.PORT || 3000;
 
-const server = express()
-const port = process.env.PORT || 3000
+// Serve arquivos estáticos da pasta 'src'
 server.use(express.static(path.join(__dirname, 'src')));
-//
 
-// Inicia o servidor HTTP
-const serverExpress = server.listen(port, () => {
-    console.log("Server is running")
-})
+server.listen(port, () => {
+    console.log(`Server is running on port ${port}`);
+});
 
-//Arquivo html
+// Página HTML
 server.get("/", (_req, res) => {
-    res.sendFile(path.join(__dirname, 'index.html'))
-})
+    res.sendFile(path.join(__dirname, 'src', 'index.html'));
+});
 
-//
-
-// pagina de erro
 server.use((_req, res) => {
-    res.status(404).send("Página não encontrada")
-})
+    res.status(404).send("Página não encontrada");
+});
 
-//
-
-const wss = new WebSocketServer({ server: serverExpress })
+const wss = new WebSocketServer({ server });
 
 wss.on("connection", (ws) => {
-    ws.on("error", console.error)
+    ws.on("error", console.error);
 
     ws.on("message", (data) => {
-        //console.log(data.toString())
-        wss.clients.forEach((client) => client.send(data.toString()))
-    })
-    console.log("client connected")
-})
+        wss.clients.forEach((client) => client.send(data.toString()));
+    });
+    console.log("Client connected");
+});

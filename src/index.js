@@ -7,7 +7,7 @@ require("dotenv").config()
 
 const server = express()
 const port = process.env.PORT || 3000
-server.use(express.static(path.join(__dirname, 'public')));
+server.use(express.static(path.join(__dirname, 'src')));
 //
 
 // Inicia o servidor HTTP

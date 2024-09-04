@@ -4,403 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ShortRest</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
-
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
-
-.archivo-black-regular {
-    font-family: "Archivo Black", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-}
-  
-
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    background-color: rgba(217, 217, 217,10)
-}
-
-.login{
-    position: absolute;
-    left: 50em;
-}
-
-.login > h2{
-    font-weight: 600;
-    margin-bottom: .5em;
-}
-
-.loginForm{
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.loginInput{
-    border: none;
-    padding: 15px;
-    font-size: 0.85rem;
-    font-weight: 600;
-}
-
-.menu {
-    position: absolute;
-    display: flex;
-    /*top: 0.5em;
-    left: 0.5em;*/
-    width: auto;
-    height: 4em;
-    align-items: center;
-    justify-content: space-evenly;
-    background-color: rgba(169, 169, 169, 0.4);
-    border-radius: 6px;
-    margin: 0.5em;
-}
-
-    .menu .options-container {
-        height: 100%;
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        
-    }
-
-    .menu-option {
-        z-index: 9;
-        flex:1;
-        height: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-evenly;
-        width: 3.5em;
-        cursor: pointer;
-        position: relative;
-        border-radius: 6px 6px 0px 0px ;
-
-        &:hover .sub-menu {
-            opacity: 1;
-            z-index: 9;
-            pointer-events: all;   
-    
-        }
-
-        &:hover{
-            background-color: rgba(169, 169, 169, 0.4);
-        
-        }
-
-        
-    }
-
-    .menu-option img{
-        height: 2em;
-    }
-
-
-    .menu-option div button{
-    background-color: transparent;
-    border: transparent;
-    gap: 10px;
-    padding: 10px;
-
-
-    }
-    .menu-option div button:hover{
-    cursor: pointer;
-    }
-
-    .sub-menu {
-        border-radius: 0px 0px 6px 6px;
-        width: 3.5em;
-        position: absolute;
-        top: 64px;
-        padding: 0.5em;
-        transition: all;
-        opacity: 0;
-        z-index: -9;
-        pointer-events: none;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-start;
-        align-items: center;
-        gap: .5;
-        background-color: rgba(169, 169, 169, 0.4);
-    }
-
-
-.chat{
-    position: absolute;
-    background-color: rgba(169, 169, 169, 0.35);
-    height: 100%;
-    width: 23em;
-    right: 0;
-    border-radius: 8px 0 0 8px;
-
-}
-
-    .sender{
-        position: absolute;
-        bottom: 0;
-        background-color: rgba(169, 169, 169, 0.35);
-        width: 100%;
-        height: 10%;
-        border-radius: 8px 8px 0 8px;
-
-        display: flex;
-        justify-content: flex-start;
-
-    }
-
-
-    .messagesArea {
-        height: 100%;
-        width: 100%;
-        max-height: 53.5em; /* Defina a altura máxima do container */
-        overflow-y: auto; /* Adicione uma barra de rolagem vertical quando necessário */
-        display: flex;
-        flex-direction: column; /* Altera o fluxo das mensagens para coluna */
-        padding: 1em;
-    }
-    
-    /* .messageArea{
-        display: flex;
-        background-color: black;
-        height: 100%;
-        width: 100%;
-        flex-direction: column;
-        max-height: 400px;Defina a altura máxima do container 
-        overflow-y: auto;
-
-        
-    } */
-::-webkit-scrollbar,::-webkit-scrollbar-button,::-webkit-scrollbar-track,::-webkit-scrollbar-track-piece,::-webkit-scrollbar-thumb,::-webkit-scrollbar-corner{
-    text-decoration: none;
-}
-      
-
-    .userSender{
-        font-family: "Archivo Black", sans-serif;
-        font-weight: 600;
-        font-size: larger;
-        /* margin-right: 9em; */
-        
-        
-    }
-
-     
-
-    .messages{
-        margin-top: .2em;
-        margin-bottom: .5em;
-        margin-left: 1.6em;
-        padding: .8em;
-        width: 90%;
-        height: auto;
-        border-radius: 4px;
-        word-wrap: break-word;
-        background-color: rgba(169, 169, 169, 0.35);
-        
-    }
-
-
-    .sender input{
-        width: 95%;
-        height: 100%;
-        outline: 0; 
-        border: 0;
-        background-color: transparent;
-        border-radius: 8px 8px 0 8px;
-        
-        font-family: "Archivo Black", sans-serif;
-        font-weight: 600;
-        font-size: larger;
-        word-wrap: break-word;
-
-        padding-top: 30px;
-        padding-left: 25px;
-        resize: none;
-        overflow: hidden;
-        
-
-
-        /* &:focus{
-            padding-top: 10px;
-            padding-bottom: 40px;
-            
-        } */
-
-        
-    }
-
-    .sender textarea{
-        width: 95%;
-        height: 100%;
-        outline: 0; 
-        border: 0;
-        background-color: transparent;
-        border-radius: 8px 8px 0 8px;
-        
-        font-family: "Archivo Black", sans-serif;
-        font-weight: 600;
-        font-size: larger;
-        word-wrap: break-word;
-
-        padding-top: 30px;
-        padding-left: 25px;
-        resize: none;
-        overflow: hidden;
-        
-
-
-        /* &:focus{
-            padding-top: 10px;
-            padding-bottom: 40px;
-            
-        } */
-
-        
-    }
-
-
-    
-.sheet{
-    position: absolute;
-    bottom: 0;
-    width: 37em;
-    height: 27em;
-    background-color: rgba(169, 169, 169, 0.35);
-    border-radius: 0 8px 0 0;
-
-}
-    .menu-char{
-        display: flex;
-        justify-content: flex-start;
-        width: 100%;
-        height: 9%;
-
-    }
-
-    .menu-char-options{
-        display: flex;
-        width: 80%;
-        align-items: center; 
-        justify-content: center;
-        font-family: "Archivo Black", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-        
-        
-        &:hover{
-            background-color: rgba(169, 169, 169, 0.35);
-            color:black;
-        }
-        
-    }
-
-    .menu-char-selector{
-        display: flex;
-        width: 30%;
-        align-items: center; 
-        justify-content: center;
-        border-radius: 0px 8px 0px 0px;
-        
-        &:hover{
-            background-color: rgba(169, 169, 169, 0.35);
-            color:black;
-        }
-    }
-
-    .menu-char button{
-        background-color: transparent;
-        width: 100%;
-        height: 100%;
-        border: transparent;
-        cursor: pointer;
-        font-family: "Archivo Black", sans-serif;
-        font-weight: 400;
-        font-style: normal;
-
-
-    }
-    
-    .menu-char-selector img{
-        height: 2em;
-    }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
     <nav class="menu">
         <div class="options-container">
             <div class="menu-option" >
-                <img src="./cursor.svg" alt="">
+                <img src="img/cursor.svg" alt="">
                 <div class="sub-menu">
                    
                     <button>
-                        <img src="./mover.svg" alt="">
+                        <img src="img/mover.svg" alt="">
                     </button>
 
                 </div>
             </div>
             <div class="menu-option">
-                <img src="./lapis-regua.svg" alt="">
+                <img src="img/lapis-regua.svg" alt="">
                 <div class="sub-menu">
                     <button>
-                        <img src="./regua.svg" alt="">
+                        <img src="img/regua.svg" alt="">
                     </button>
                     <button>
-                        <img src="./lapis.svg" alt="">
+                        <img src="img/lapis.svg" alt="">
                     </button>
                     <button>
-                        <img src="./apagador.svg" alt="">
+                        <img src="img/apagador.svg" alt="">
                     </button>
                 </div>
             </div>
             <div class="menu-option">
-                <img src="./barra-de-volume.svg" alt="">
+                <img src="img/barra-de-volume.svg" alt="">
                 <div class="sub-menu">
                     <button>
-                        <img src="./guitarra.svg" alt="">
+                        <img src="img/guitarra.svg" alt="">
                     </button>
                     <button>
-                        <img src="./folha.svg" alt="">
+                        <img src="img/folha.svg" alt="">
                     </button>
                 </div>
             </div>
             <div class="menu-option">
-                <img src="./dados-d20.svg" alt="" onclick="sendRoll(20)">
+                <img src="img/dados-d20.svg" alt="" onclick="sendRoll(20)">
                 <div class="sub-menu">
                     <button onclick="sendRoll(12)">
-                        <img src="./dados-d12.svg" alt="" >
+                        <img src="img/dados-d12.svg" alt="" >
                     </button>
                     <button onclick="sendRoll(10)">
-                        <img src="./dados-d10.svg" alt="">
+                        <img src="img/dados-d10.svg" alt="">
                     </button>
                     <button onclick="sendRoll(100)">
-                        <img src="./dados-d100.svg" alt="">
+                        <img src="img/dados-d100.svg" alt="">
                     </button>
                     <button onclick="sendRoll(8)">
-                        <img src="./dados-d8.svg" alt="">
+                        <img src="img/dados-d8.svg" alt="">
                     </button>
                     <button onclick="sendRoll(6)">
-                        <img src="./dados-d6.svg" alt="">
+                        <img src="img/dados-d6.svg" alt="">
                     </button>
                     <button onclick="sendRoll(4)">
-                        <img src="./dados-d4.svg" alt="">
+                        <img src="img/dados-d4.svg" alt="">
                     </button>
                 </div>
             </div>
 
             <div class="menu-option">
-                 <img src="./mapa.svg" alt="">
+                 <img src="img/mapa.svg" alt="">
                  <!--<div class="sub-menu">
                 </div> -->
             </div>
@@ -470,7 +140,7 @@ body {
 
             <div class="menu-char-selector">
                 <button>
-                    <img src="./usuario-do-circulo.svg" alt="">
+                    <img src="img/usuario-do-circulo.svg" alt="">
                 </button>
             </div>
         </nav>
@@ -487,128 +157,7 @@ body {
 
     </section>
 
-    <script>
-        // Login elements
-const login = document.querySelector(".login");
-const loginForm = document.querySelector(".loginForm");
-const loginInput = document.querySelector(".loginInput");
-
-// Chat sender elements
-const sender = document.querySelector(".sender");  // Corrigido de ".login" para ".sender"
-const senderForm = document.querySelector(".senderForm");
-const senderInput = document.querySelector(".senderInput");
-const messagesArea = document.querySelector(".messagesArea");
-const textarea = document.querySelector('.sender textarea');
-
-textarea.addEventListener('keydown', function(event) {
-    if (event.keyCode === 13 && !event.shiftKey) {
-        event.preventDefault();
-        const textoDigitado = textarea.value.trim();
-        if (textoDigitado !== "") {
-            // Chama a função sendMessage para enviar a mensagem
-            sendMessage(textoDigitado);
-        }
-    }
-});
-
-const user = {id: "", name: ""};
-let websocket;
-
-const createMessage = (userName, content) => {
-    const div = document.createElement("div");
-    const span = document.createElement("span");
-    const lineBreak = document.createElement("br");
-    const text = document.createElement("p");
-
-    div.classList.add("messages");
-    span.classList.add("userSender");
-
-    div.appendChild(span);
-    div.appendChild(lineBreak);
-    div.appendChild(text);
-
-    span.innerHTML = userName;
-    text.innerHTML = content;
-
-    return div;
-};
-
-const createRoll = (userName, content) => {
-    const div = document.createElement("div");
-    const span = document.createElement("span");
-    const lineBreak = document.createElement("br");
-    const roll = document.createElement("p");
-
-    div.classList.add("messages");
-    span.classList.add("userSender");
-
-    div.appendChild(span);
-    div.appendChild(lineBreak);
-    div.appendChild(roll);
-
-    span.innerHTML = userName
-    roll.innerHTML = content
-
-    return div;
-};
-const scrollScreen = () => {
-    const lastMessage = messagesArea.lastElementChild;
-    lastMessage.scrollIntoView({ behavior: "smooth", block: "end" });
-};
-const processMessage = ({ data }) => {
-    const { type, userId, userName, content} = JSON.parse(data);
-    let element;
-
-    if (type === "roll") {
-        element = createRoll(userName, content);
-    } 
-    if (type === "message") {
-        element = createMessage(userName, content);
-    }
-
-    messagesArea.appendChild(element);
-    scrollScreen();
-};
-const handleLogin = (event) => {
-    event.preventDefault();
-    user.id = crypto.randomUUID();
-    user.name = loginInput.value;
-    login.style.display = "none";
-
-    websocket = new WebSocket(`wss://${window.location.host}`);
-
-    websocket.onmessage = processMessage;
-
-    websocket.onerror = function(error) {
-        console.error("Erro ao conectar ao servidor WebSocket:", error);
-    };
-};
-const sendMessage = (messageContent) => {
-    event.preventDefault();
-
-    const message = {
-        userId: user.id,
-        userName: user.name,
-        content: messageContent,
-        type: "message"
-    };
-
-    websocket.send(JSON.stringify(message));
-    textarea.value = "";
-};
-//manda mensagem pra o servidor
-const sendRoll = (dice) => {
-    const roll = {
-        userId: user.id,
-        userName: user.name,
-        content: Math.floor(Math.random() * dice) + 1,
-        type: "roll"
-    }
-
-    websocket.send(JSON.stringify(roll));
-}
-loginForm.addEventListener("submit", handleLogin);
-    </script>
+    <script src="js/script.js"></script>
 </body>
 </html>
 

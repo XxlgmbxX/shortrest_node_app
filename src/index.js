@@ -51,6 +51,7 @@ wss.on("connection", (ws) => {
 
         if(parsedData.type === "login"){
             console.log(data.toString())
+            logado = true
         }
 
         if(parsedData.type === "message"){

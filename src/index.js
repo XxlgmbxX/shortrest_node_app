@@ -22,7 +22,7 @@ server.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 })
 
-//
+//z
 
 // pagina de erro
 server.use((_req, res) => {
@@ -41,5 +41,4 @@ wss.on("connection", (ws) => {
         wss.clients.forEach((client) => client.send(data.toString()))
     })
     console.log("client connected")
-    console.log(data)
 })

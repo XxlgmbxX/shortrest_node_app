@@ -36,12 +36,8 @@ if(!logado){
     })
 }
 
-server.get("/dashboard", (req, res) => {
-    if (logado) {
-        res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
-    } else {
-        res.redirect('/');
-    }
+server.get("/login", (req, res) =>{
+    res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
 });
 
 // Roteamento
@@ -66,7 +62,9 @@ wss.on("connection", (ws) => {
         if(parsedData.type === "login"){
             console.log(data.toString())
             logado = true
-            //redirect
+            server.get("/", (req,res)=>{
+                res.redirect("/login");
+            })
         }
 
         if(parsedData.type === "message"){

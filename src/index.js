@@ -37,8 +37,16 @@ wss.on("connection", (ws) => {
     ws.on("error", console.error)
 
     ws.on("message", (data) => {
-        console.log(data.toString())
-        wss.clients.forEach((client) => client.send(data.toString()))
+        const parsedData = JSON.parse(data)
+        if(parsedData.type === "message"){
+            
+            console.log(data.toString())
+            wss.clients.forEach((client) => client.send(data.toString()))
+        }
+
+        if(parsedData.type === "login"){
+            console.log(data.toString())
+        }
     })
     console.log("client connected")
 })

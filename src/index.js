@@ -36,12 +36,12 @@ if(!logado){
     })
 }
 
-server.get("/login", (req, res) =>{
+server.get("/login", (req, res){
     res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
 });
 
 // Roteamento
-//server.get("/", checkLogin);
+server.get("/", checkLogin);
 //
 
 // pagina de erro
@@ -62,9 +62,7 @@ wss.on("connection", (ws) => {
         if(parsedData.type === "login"){
             console.log(data.toString())
             logado = true
-            server.get("/", (req,res)=>{
-                res.redirect("/login");
-            })
+            window.location.href = "https://shortrest-node-app.onrender.com/login"
         }
 
         if(parsedData.type === "message"){

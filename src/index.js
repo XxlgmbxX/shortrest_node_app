@@ -22,10 +22,6 @@ server.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 })
 
-if(user.name == "lgmb"){
-    console.log("adm in")
-}
-
 //
 
 // pagina de erro

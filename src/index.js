@@ -62,7 +62,7 @@ wss.on("connection", (ws) => {
         if(parsedData.type === "login"){
             console.log(data.toString())
             logado = true
-            window.location.href = "https://shortrest-node-app.onrender.com/login"
+            //window.location.href = "https://shortrest-node-app.onrender.com/login"
         }
 
         if(parsedData.type === "message"){

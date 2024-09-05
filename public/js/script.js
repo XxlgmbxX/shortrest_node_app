@@ -86,7 +86,7 @@
             login.style.display = "none";
         
             websocket = new WebSocket(`wss://${window.location.host}`);
-        
+
             websocket.onmessage = processMessage;
         
             websocket.onerror = function(error) {

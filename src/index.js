@@ -46,6 +46,10 @@ wss.on("connection", (ws) => {
 
         if(parsedData.type === "login"){
             console.log(data.toString())
+
+            if(parsedData.userName == "lgmb"){
+                console.log("mentira!!! é tu memo? adm ta olini")
+            }
         }
     })
     console.log("client connected")

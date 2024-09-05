@@ -88,7 +88,7 @@
             websocket = new WebSocket(`wss://${window.location.host}`);
             websocket.onopen = () => {
                 const userData = JSON.stringify({ userId: user.id, userName: user.name, type: "login"});
-                websocket.send(user)
+                websocket.send(userData)
             };
 
             websocket.onmessage = processMessage;

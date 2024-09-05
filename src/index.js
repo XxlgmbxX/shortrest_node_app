@@ -18,20 +18,20 @@ const serverExpress = server.listen(port, () => {
 
 //Arquivo html
 
-logado = false
+let logado = false; // Deve ser dinâmico
+// Middleware para autenticação (exemplo básico)
+const checkLogin = (req, res, next) => {
+    // Aqui você deve substituir a lógica com base na autenticação real
 
-if(!logado){
-    server.get("/", (_req, res) => {
-        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
-    })
-}
+    if (logado) {
+        res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
+    } else {
+        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
+    }
+};
 
-if(logado){
-    server.get("/", (_req, res) => {
-        res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'))
-    })
-}
-
+// Roteamento
+server.get("/", checkLogin);
 //
 
 // pagina de erro

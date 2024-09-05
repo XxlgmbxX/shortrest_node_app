@@ -41,7 +41,7 @@ server.get("/login", (req, res) =>{
 });
 
 // Roteamento
-server.get("/", checkLogin);
+//server.get("/", checkLogin);
 //
 
 // pagina de erro

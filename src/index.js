@@ -18,9 +18,19 @@ const serverExpress = server.listen(port, () => {
 
 //Arquivo html
 
-server.get("/", (_req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
-})
+logado = false
+
+if(!logado){
+    server.get("/", (_req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
+    })
+}
+
+if(logado){
+    server.get("/", (_req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'))
+    })
+}
 
 //
 
@@ -38,19 +48,17 @@ wss.on("connection", (ws) => {
 
     ws.on("message", (data) => {
         const parsedData = JSON.parse(data)
+
+        if(parsedData.type === "login"){
+            console.log(data.toString())
+        }
+
         if(parsedData.type === "message"){
             
             console.log(data.toString())
             wss.clients.forEach((client) => client.send(data.toString()))
         }
 
-        if(parsedData.type === "login"){
-            console.log(data.toString())
-
-            if(parsedData.userName == "lgmb"){
-                console.log("mentira!!! é tu memo? adm ta olini")
-            }
-        }
     })
     console.log("client connected")
 })

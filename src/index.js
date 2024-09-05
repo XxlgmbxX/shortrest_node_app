@@ -36,8 +36,12 @@ if(!logado){
     })
 }
 
-server.get("/login", (req, res) =>{
-    res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
+server.get("/dashboard", (req, res) => {
+    if (logado) {
+        res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
+    } else {
+        res.redirect('/');
+    }
 });
 
 // Roteamento
@@ -62,7 +66,7 @@ wss.on("connection", (ws) => {
         if(parsedData.type === "login"){
             console.log(data.toString())
             logado = true
-            //window.location.href = "https://shortrest-node-app.onrender.com/login"
+            //redirect
         }
 
         if(parsedData.type === "message"){

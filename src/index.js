@@ -42,6 +42,9 @@ wss.on("connection", (ws) => {
         wss.clients.forEach((client) => client.send(data.toString()))
     })
     console.log("client connected")
-    console.log(data) 
+    if(user.name == "lgmb"){
+        console.log("adm in")
+    }
+    
 })
 

@@ -22,7 +22,6 @@ server.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 })
 
-
 //
 
 // pagina de erro
@@ -42,9 +41,4 @@ wss.on("connection", (ws) => {
         wss.clients.forEach((client) => client.send(data.toString()))
     })
     console.log("client connected")
-    if(user.name == "lgmb"){
-        console.log("adm in")
-    }
-    
 })
-

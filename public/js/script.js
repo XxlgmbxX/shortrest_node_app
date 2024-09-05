@@ -1,5 +1,3 @@
-//const { json } = require("express");
-
         // Login elements
         const login = document.querySelector(".login");
         const loginForm = document.querySelector(".loginForm");
@@ -88,11 +86,8 @@
             login.style.display = "none";
         
             websocket = new WebSocket(`wss://${window.location.host}`);
-
+        
             websocket.onmessage = processMessage;
-
-            websocket.send(JSON.stringify(user))
-
         
             websocket.onerror = function(error) {
                 console.error("Erro ao conectar ao servidor WebSocket:", error);

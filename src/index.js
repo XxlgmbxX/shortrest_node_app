@@ -19,7 +19,7 @@ const serverExpress = server.listen(port, () => {
 //Arquivo html
 
 let logado = false; // Deve ser dinâmico
-// Middleware para autenticação (exemplo básico)
+/*// Middleware para autenticação (exemplo básico)
 const checkLogin = (req, res, next) => {
     // Aqui você deve substituir a lógica com base na autenticação real
 
@@ -28,7 +28,17 @@ const checkLogin = (req, res, next) => {
     } else {
         res.sendFile(path.join(__dirname, '..', 'public', 'index.html'));
     }
-};
+};*/
+
+if(!logado){
+    server.get("/", (_req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
+    })
+}
+
+server.get("/login", (req, res) =>{
+    res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
+});
 
 // Roteamento
 server.get("/", checkLogin);
@@ -52,6 +62,7 @@ wss.on("connection", (ws) => {
         if(parsedData.type === "login"){
             console.log(data.toString())
             logado = true
+            window.location.href = "https://shortrest-node-app.onrender.com/login"
         }
 
         if(parsedData.type === "message"){

@@ -77,6 +77,7 @@
             }
             if (type === "login" && action === "failed"){
                 console.log("deu ruim");
+                
             }
         
             messagesArea.appendChild(element);

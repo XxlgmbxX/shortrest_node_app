@@ -63,7 +63,7 @@ wss.on("connection", (ws) => {
         if(parsedData.type === "login"){
             console.log(data.toString())
             logado = true
-            const response = client.send({userId: data.user.id, type: "login", action: "failed"})
+            ws.send(JSON.stringify({ userName: parsedData.userName, type: "login", action: "failed" }));
         }
 
         if(parsedData.type === "message"){

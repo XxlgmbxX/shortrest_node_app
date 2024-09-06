@@ -66,7 +66,7 @@
             lastMessage.scrollIntoView({ behavior: "smooth", block: "end" });
         };
         const processMessage = ({ data }) => {
-            const { type, userId, userName, content} = JSON.parse(data);
+            const { type, userId, userName, content, action} = JSON.parse(data);
             let element;
         
             if (type === "roll") {
@@ -77,7 +77,7 @@
             }
             if (type === "login" && action === "failed"){
                 console.log("deu ruim");
-                
+
             }
         
             messagesArea.appendChild(element);

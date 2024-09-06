@@ -80,8 +80,8 @@
 
             }
         
-            messagesArea.appendChild(element);
-            scrollScreen();
+            //messagesArea.appendChild(element);
+            //scrollScreen();
         };
         const handleLogin = (event) => {
             event.preventDefault();

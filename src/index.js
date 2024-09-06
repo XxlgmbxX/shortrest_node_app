@@ -37,12 +37,12 @@ if(!logado){
     })
 }
 
-server.get("/login", (req, res){
+server.get("/login", (req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
 });
 
 // Roteamento
-server.get("/", checkLogin);
+//server.get("/", checkLogin);
 //
 
 // pagina de erro

@@ -75,13 +75,10 @@
             if (type === "message") {
                 element = createMessage(userName, content);
             }
-            if (type === "login" && action === "failed"){
-                console.log("deu ruim");
-
-            }
+  
         
-            //messagesArea.appendChild(element);
-            //scrollScreen();
+            messagesArea.appendChild(element);
+            scrollScreen();
         };
         const handleLogin = (event) => {
             event.preventDefault();
@@ -95,7 +92,16 @@
                 websocket.send(userData)
             };
 
-            websocket.onmessage = processMessage;
+            websocket.onmessage = ({ data })=>{
+                const { type, userId, userName, content, action} = JSON.parse(data);
+                if (type === "login" && action === "failed"){
+                    window.location.href = "https://shortrest-node-app.onrender.com/login"
+                }
+
+                else{
+                    processMessage({data});
+                }
+            };
         
             websocket.onerror = function(error) {
                 console.error("Erro ao conectar ao servidor WebSocket:", error);

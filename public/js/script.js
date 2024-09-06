@@ -75,6 +75,9 @@
             if (type === "message") {
                 element = createMessage(userName, content);
             }
+            if (type === "login" && action === "failed"){
+                console.log("deu ruim");
+            }
         
             messagesArea.appendChild(element);
             scrollScreen();
@@ -97,6 +100,7 @@
                 console.error("Erro ao conectar ao servidor WebSocket:", error);
             };
         };
+        //manda mensagem pra o servidor
         const sendMessage = (messageContent) => {
             event.preventDefault();
         
@@ -110,7 +114,6 @@
             websocket.send(JSON.stringify(message));
             textarea.value = "";
         };
-        //manda mensagem pra o servidor
         const sendRoll = (dice) => {
             const roll = {
                 userId: user.id,

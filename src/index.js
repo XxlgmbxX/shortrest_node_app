@@ -1,4 +1,5 @@
 const express = require("express")
+const { type } = require("os")
 const path = require('path')
 const { WebSocketServer } = require("ws")
 require("dotenv").config()
@@ -62,7 +63,7 @@ wss.on("connection", (ws) => {
         if(parsedData.type === "login"){
             console.log(data.toString())
             logado = true
-            window.location.href = "https://shortrest-node-app.onrender.com/login"
+            const response = client.send({userId: data.user.id, type: "login", action: "failed"})
         }
 
         if(parsedData.type === "message"){

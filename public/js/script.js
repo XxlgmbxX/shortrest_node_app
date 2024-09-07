@@ -1,28 +1,11 @@
         // Login elements
-        const login = document.querySelector(".login");
         const loginForm = document.querySelector(".loginForm");
         const loginEmailInput = document.querySelector(".loginEmailInput");
         const loginPasswordInput = document.querySelector(".loginPasswordInput")
-        
-        // Chat sender elements
-        const sender = document.querySelector(".sender");  // Corrigido de ".login" para ".sender"
-        const senderForm = document.querySelector(".senderForm");
-        const senderInput = document.querySelector(".senderInput");
-        const messagesArea = document.querySelector(".messagesArea");
-        const textarea = document.querySelector('.sender textarea');
-        
-        textarea.addEventListener('keydown', function(event) {
-            if (event.keyCode === 13 && !event.shiftKey) {
-                event.preventDefault();
-                const textoDigitado = textarea.value.trim();
-                if (textoDigitado !== "") {
-                    // Chama a função sendMessage para enviar a mensagem
-                    sendMessage(textoDigitado);
-                }
-            }
-        });
-        
-        const user = {id: "", email: "", password: ""};
+
+        //console.log(loginEmailInput.value);
+
+        let user = {id: "", email: "", password: ""};
         let websocket;
         
         const createMessage = (userName, content) => {
@@ -86,7 +69,8 @@
             user.id = crypto.randomUUID();
             user.email = loginEmailInput.value;
             user.password = loginPasswordInput.value;
-            //login.style.display = "none";
+            //alert(user.email)
+            //alert(user.password)
         
             websocket = new WebSocket(`wss://${window.location.host}`);
             websocket.onopen = () => {
@@ -96,13 +80,9 @@
 
             websocket.onmessage = ({ data })=>{
                 const { type, userId, userName, content, action} = JSON.parse(data);
-                if (type === "login" && action === "failed"){
-                    window.location.href = "https://shortrest-node-app.onrender.com/login"
-                }
 
-                else{
                     processMessage({data});
-                }
+                
             };
         
             websocket.onerror = function(error) {

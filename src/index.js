@@ -10,18 +10,18 @@ require("dotenv").config()
 
 
 // Função para fazer login
- const loginUser = (email, password) => {
+const loginUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        // Login bem-sucedido
-        const user = userCredential.user;
-        console.log('Usuário logado:', user);
-      })
-      .catch((error) => {
-        console.error('Erro ao fazer login:', error);
-      });
-  };
-//
+        .then((userCredential) => {
+            const user = userCredential.user;
+            console.log('Usuário logado:', user);
+            return user; // Certifique-se de retornar o usuário
+        })
+        .catch((error) => {
+            console.error('Erro ao fazer login:', error);
+            throw error; // Lance o erro para que o .catch no WebSocket funcione
+        });
+};
 
 const port = process.env.PORT || 3000
 const server = express()
@@ -73,7 +73,7 @@ wss.on("connection", (ws) => {
             loginUser(parsedData.userEmail, parsedData.userPassword)
                 .then((authResponse) => {
                     logado = true;
-                    console.log(authResponse);
+                    console.log("Usuário autenticado:", authResponse);
                 })
                 .catch((error) => {
                     console.error('Erro ao fazer login:', error);

@@ -1,10 +1,12 @@
+const { auth } = require('./services/configfirebase'); 
+const { signInWithEmailAndPassword } = require('firebase/auth');
+
 const express = require("express")
 const { type } = require("os")
 const path = require('path')
 const { WebSocketServer } = require("ws")
 require("dotenv").config()
 
-import { auth } from './services/configfirebase';
 
 
 // Função para fazer login
@@ -77,10 +79,10 @@ wss.on("connection", (ws) => {
 
         if(parsedData.type === "login"){
             console.log(data.toString())
-            const auth = loginUser(parsedData.userEmail, parsedData.userPassword)
+            const authResponse = loginUser(parsedData.userEmail, parsedData.userPassword)
             logado = true
 
-            console.log(auth)
+            console.log(authResponse)
         }
 
         if(parsedData.type === "message"){

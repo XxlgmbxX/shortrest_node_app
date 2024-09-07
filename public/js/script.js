@@ -50,7 +50,7 @@
             lastMessage.scrollIntoView({ behavior: "smooth", block: "end" });
         };
         const processMessage = ({ data }) => {
-            const { type, userId, userName, content, action} = JSON.parse(data);
+            const { type, userId, userName, content, action, auth} = JSON.parse(data);
             let element;
         
             if (type === "roll") {
@@ -59,7 +59,14 @@
             if (type === "message") {
                 element = createMessage(userName, content);
             }
-  
+            
+            if (type === "auth" && auth == "success"){
+                window.location.href = "https://www.youtube.com/watch?v=dQw4w9WgXcQ" 
+            }
+
+            else{
+                alert("dados invalidos")
+            }
         
             messagesArea.appendChild(element);
             scrollScreen();

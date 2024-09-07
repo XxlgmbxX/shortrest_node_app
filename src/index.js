@@ -14,12 +14,12 @@ const loginUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
         .then((userCredential) => {
             const user = userCredential.user;
-            console.log('Usuário logado:', user);
+
             return user; // Certifique-se de retornar o usuário
         })
         .catch((error) => {
             console.error('Erro ao fazer login:', error);
-            throw error; // Lance o erro para que o .catch no WebSocket funcione
+            throw error; 
         });
 };
 
@@ -69,14 +69,16 @@ wss.on("connection", (ws) => {
         const parsedData = JSON.parse(data)
 
         if (parsedData.type === "login") {
-            console.log(data.toString());
+            //console.log(data.toString());
+
             loginUser(parsedData.userEmail, parsedData.userPassword)
                 .then((authResponse) => {
-                    logado = true;
                     console.log("Usuário autenticado:", authResponse);
+                    client.send(JSON.stringify({auth: "success", type: "auth"}))
                 })
                 .catch((error) => {
                     console.error('Erro ao fazer login:', error);
+                    client.send(JSON.stringify({auth: "failed", type: "auth"}))
                 });
         }
 

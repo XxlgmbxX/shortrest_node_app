@@ -1,7 +1,8 @@
         // Login elements
         const login = document.querySelector(".login");
         const loginForm = document.querySelector(".loginForm");
-        const loginInput = document.querySelector(".loginInput");
+        const loginEmailInput = document.querySelector(".loginEmailInput");
+        const loginPasswordInput = document.querySelector(".loginPasswordInput")
         
         // Chat sender elements
         const sender = document.querySelector(".sender");  // Corrigido de ".login" para ".sender"
@@ -21,7 +22,7 @@
             }
         });
         
-        const user = {id: "", name: ""};
+        const user = {id: "", email: "", password: ""};
         let websocket;
         
         const createMessage = (userName, content) => {
@@ -83,12 +84,13 @@
         const handleLogin = (event) => {
             event.preventDefault();
             user.id = crypto.randomUUID();
-            user.name = loginInput.value;
-            login.style.display = "none";
+            user.email = loginEmailInput.value;
+            user.password = loginPasswordInput.value;
+            //login.style.display = "none";
         
             websocket = new WebSocket(`wss://${window.location.host}`);
             websocket.onopen = () => {
-                const userData = JSON.stringify({ userId: user.id, userName: user.name, type: "login"});
+                const userData = JSON.stringify({userEmail: user.email, userPassword: user.password , type: "login"});
                 websocket.send(userData)
             };
 
@@ -113,7 +115,7 @@
         
             const message = {
                 userId: user.id,
-                userName: user.name,
+                userName: user.email,
                 content: messageContent,
                 type: "message"
             };
@@ -124,7 +126,7 @@
         const sendRoll = (dice) => {
             const roll = {
                 userId: user.id,
-                userName: user.name,
+                userName: user.email,
                 content: Math.floor(Math.random() * dice) + 1,
                 type: "roll"
             }

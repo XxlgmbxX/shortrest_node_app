@@ -1,0 +1,33 @@
+body{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.login_container{
+    width: 20em;
+}
+
+.login{
+    position: absolute;
+    left: 50em;
+}
+
+.login > h2{
+    font-weight: 600;
+    margin-bottom: .5em;
+}
+
+.loginForm{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.loginNickInput, .loginPasswordInput{
+    border: none;
+    padding: 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}

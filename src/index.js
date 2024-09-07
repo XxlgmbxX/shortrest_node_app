@@ -4,6 +4,21 @@ const path = require('path')
 const { WebSocketServer } = require("ws")
 require("dotenv").config()
 
+import { auth } from './services/configfirebase';
+
+
+// Função para fazer login
+ const loginUser = (email, password) => {
+    return signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        // Login bem-sucedido
+        const user = userCredential.user;
+        console.log('Usuário logado:', user);
+      })
+      .catch((error) => {
+        console.error('Erro ao fazer login:', error);
+      });
+  };
 //
 
 const port = process.env.PORT || 3000
@@ -38,7 +53,7 @@ if(!logado){
 }
 
 server.get("/login", (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'teste.html'));
+    res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
 });
 
 // Roteamento
@@ -62,11 +77,10 @@ wss.on("connection", (ws) => {
 
         if(parsedData.type === "login"){
             console.log(data.toString())
+            const auth = loginUser(parsedData.userEmail, parsedData.userPassword)
             logado = true
 
-            if(parsedData.userName == "lgmb"){
-                ws.send(JSON.stringify({ userName: parsedData.userName, type: "login", action: "failed" }));
-            }
+            console.log(auth)
         }
 
         if(parsedData.type === "message"){

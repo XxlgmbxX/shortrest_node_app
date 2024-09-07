@@ -68,12 +68,16 @@ wss.on("connection", (ws) => {
     ws.on("message", (data) => {
         const parsedData = JSON.parse(data)
 
-        if(parsedData.type === "login"){
-            console.log(data.toString())
-            const authResponse = loginUser(parsedData.userEmail, parsedData.userPassword)
-            logado = true
-
-            console.log(authResponse)
+        if (parsedData.type === "login") {
+            console.log(data.toString());
+            loginUser(parsedData.userEmail, parsedData.userPassword)
+                .then((authResponse) => {
+                    logado = true;
+                    console.log(authResponse);
+                })
+                .catch((error) => {
+                    console.error('Erro ao fazer login:', error);
+                });
         }
 
         if(parsedData.type === "message"){

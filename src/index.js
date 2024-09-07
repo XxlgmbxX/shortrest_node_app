@@ -1,4 +1,4 @@
-const { auth } = require('./services/configfirebase'); 
+const { auth } = require('../services/configfirebase'); 
 const { signInWithEmailAndPassword } = require('firebase/auth');
 
 const express = require("express")

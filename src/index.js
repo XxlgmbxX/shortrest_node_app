@@ -49,13 +49,14 @@ const checkLogin = (req, res, next) => {
 };*/
 
 if(!logado){
-    server.get("/", (_req, res) => {
-        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
-    })
+    server.get("/login", (req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
+})
+
 }
 
-server.get("/login", (req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
+    server.get("/", (_req, res) => {
+        res.sendFile(path.join(__dirname, '..', 'public', 'index.html'))
 });
 
 // Roteamento

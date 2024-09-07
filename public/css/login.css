@@ -25,7 +25,7 @@ body{
     gap: 10px;
 }
 
-.loginNickInput, .loginPasswordInput{
+.loginEmailInput, .loginPasswordInput{
     border: none;
     padding: 15px;
     font-size: 0.85rem;

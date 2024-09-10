@@ -15,32 +15,35 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("img/background.png");
+    background-image: url("/public/img/background.png");
     background-repeat: no-repeat;
     background-size: cover;
 }
 
-
-
 .login_container, .signUp_container {
+    position: absolute;
     width: 30em;
     height: 25em;
     background-color: rgba(169, 169, 169, 0.4);
     padding: 40px;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: flex-start;
+    justify-content: center;
 }
 
 .signUp_container {
-    display: none;
+    display: none; 
 }
 
 h2 {
     font-family: "Archivo Black", sans-serif;
     font-weight: 600;
-    margin-bottom: 0.1em;
+    margin-bottom: 1em;
+    margin-top: 0;
+    position: relative;
+    top: -0.6em; 
+    align-self: flex-start; 
 }
 
 .loginForm {

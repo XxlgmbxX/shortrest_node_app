@@ -71,11 +71,14 @@
             messagesArea.appendChild(element);
             scrollScreen();
         };
-        const handleLogin = (event) => {
+
+        const handleLogin = async(event) => {
             event.preventDefault();
             user.id = crypto.randomUUID();
             user.email = loginEmailInput.value;
             user.password = loginPasswordInput.value;
+            
+            /*
             //alert(user.email)
             //alert(user.password)
         
@@ -94,7 +97,16 @@
         
             websocket.onerror = function(error) {
                 console.error("Erro ao conectar ao servidor WebSocket:", error);
-            };
+            };*/
+
+            const res = await fetch(`http://localhost:3000/api/login`, {
+                headers: {
+                    "email": user.email,
+                    "senha": user.password
+                }
+            });
+            const data = await res.json()
+            console.log(data.success)
         };
         //manda mensagem pra o servidor
         const sendMessage = (messageContent) => {

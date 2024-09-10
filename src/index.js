@@ -49,6 +49,20 @@ const checkLogin = (req, res, next) => {
 
 // Roteamento
 server.get("/", checkLogin);
+
+server.get("/api/login", (req,res) =>{
+    const email = req.headers["email"]
+    const senha = req.headers["senha"]
+
+    if(email === "lgmb" && senha === "123"){
+        res.status(200).send({success: true})        
+    }
+
+    else{
+        res.status(500).send({success: false})
+    }
+})
+
 server.get("/login", (_req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
 });
@@ -74,11 +88,12 @@ wss.on("connection", (ws) => {
             loginUser(parsedData.userEmail, parsedData.userPassword)
                 .then((authResponse) => {
                     console.log("Usuário autenticado:", authResponse);
-                    client.send(JSON.stringify({auth: "success", type: "auth"}))
+                    wss.clients((client) =>client.send(JSON.stringify({auth: "success", type: "auth"})))
+
                 })
                 .catch((error) => {
                     console.error('Erro ao fazer login:', error);
-                    client.send(JSON.stringify({auth: "failed", type: "auth"}))
+                    wss.clients((client) =>client.send(JSON.stringify({auth: "failed", type: "auth"})))
                 });
         }
 

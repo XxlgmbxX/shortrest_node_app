@@ -133,3 +133,13 @@
             websocket.send(JSON.stringify(roll));
         }
         loginForm.addEventListener("submit", handleLogin);
+
+        function showSignUp() {
+            document.querySelector('.login_container').style.display = 'none';
+            document.querySelector('.signUp_container').style.display = 'flex';
+        }
+        
+        function showLogin() {
+            document.querySelector('.signUp_container').style.display = 'none';
+            document.querySelector('.login_container').style.display = 'flex';
+        }

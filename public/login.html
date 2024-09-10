@@ -10,12 +10,29 @@
     <section class="login_container">
         <h2>Login</h2>
         <form class="loginForm">
-            <input type="text" class="loginEmailInput" placeholder="Email" required>
-            <input type="text" class="loginPasswordInput" placeholder="Password" required>
-            <button type="submit" class="loginButton">Log in</button>
+            <input type="text" class="loginEmailInput" placeholder="Email">
+            <input type="text" class="loginPasswordInput" placeholder="Password">
+            <div class="formButtons">
+                <button type="submit" class="loginButton btnForm">Log in</button>
+                <button type="button" class="SignUpButton btnForm" onclick="showSignUp()">Sign up</button>
+            </div>
         </form>
 
-        <script src="js/script.js"></script>
     </section>
+    
+    <section class="signUp_container">
+        <h2>Sign Up</h2>
+        <form class="loginForm">
+            <input type="text" class="loginEmailInput" placeholder="Email">
+            <input type="text" class="loginPasswordInput" placeholder="Password">
+            <div class="formButtons">
+                <button type="submit" class="loginButton btnForm">Sign Up</button>
+                <button type="button" class="SignUpButton btnForm" onclick="showLogin()">login up</button>
+            </div>
+        </form>
+
+    </section>
+
+    <script src="js/login.js"></script>
 </body>
 </html>

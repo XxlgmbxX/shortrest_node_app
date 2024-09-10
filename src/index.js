@@ -39,17 +39,14 @@ const serverExpress = server.listen(port, () => {
 // Variável de estado
 let logado = false;
 
-// Middleware para autenticação
-const checkLogin = (req, res, next) => {
-    if (logado) {
-        res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
-    } else {
-        res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
-    }
-};
-
 // Roteamento
-server.get("/", checkLogin);
+server.get("/game", (req, res) =>{
+    res.sendFile(path.join(__dirname, '..', 'public', 'game.html'));
+});
+
+server.get("/", (_req, res) => {
+    res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
+});
 
 server.get("/api/login", async (req,res) => {
     const email = req.headers["email"]
@@ -66,9 +63,6 @@ server.get("/api/login", async (req,res) => {
     })
 })
 
-server.get("/login", (_req, res) => {
-    res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
-});
 
 // pagina de erro
 server.use((_req, res) => {

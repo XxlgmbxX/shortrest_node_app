@@ -99,7 +99,7 @@
                 console.error("Erro ao conectar ao servidor WebSocket:", error);
             };*/
 
-            const res = await fetch(`http://localhost:3000/api/login`, {
+            const res = await fetch(`http://${window.location.host}/api/login`, {
                 headers: {
                     "email": user.email,
                     "senha": user.password

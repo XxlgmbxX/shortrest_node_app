@@ -12,16 +12,17 @@ require("dotenv").config()
 // Função para fazer login
 const loginUser = (email, password) => {
     return signInWithEmailAndPassword(auth, email, password)
-        .then((userCredential) => {
-            const user = userCredential.user;
-
-            return user; // Certifique-se de retornar o usuário
-        })
-        .catch((error) => {
-            console.error('Erro ao fazer login:', error);
-            throw error; 
-        });
+    .then((userCredential) => {
+        const user = userCredential.user;
+        
+        return user; // Certifique-se de retornar o usuário
+    })
+    .catch((error) => {
+        console.error('Erro ao fazer login:', error);
+        throw error; 
+    });
 };
+
 
 const port = process.env.PORT || 3000
 const server = express()
@@ -50,17 +51,19 @@ const checkLogin = (req, res, next) => {
 // Roteamento
 server.get("/", checkLogin);
 
-server.get("/api/login", (req,res) =>{
+server.get("/api/login", async (req,res) => {
     const email = req.headers["email"]
     const senha = req.headers["senha"]
 
-    if(email === "lgmb" && senha === "123"){
-        res.status(200).send({success: true})        
-    }
+    return signInWithEmailAndPassword(auth, email, senha)
+    .then((userCredential) => {
+        res.status(200).send({success: true})
+    })
 
-    else{
+    .catch((error) =>{
+        console.error('Erro ao fazer login: ', error)
         res.status(500).send({success: false})
-    }
+    })
 })
 
 server.get("/login", (_req, res) => {
@@ -82,6 +85,7 @@ wss.on("connection", (ws) => {
     ws.on("message", (data) => {
         const parsedData = JSON.parse(data)
 
+        /*
         if (parsedData.type === "login") {
             //console.log(data.toString());
 
@@ -96,6 +100,7 @@ wss.on("connection", (ws) => {
                     wss.clients((client) =>client.send(JSON.stringify({auth: "failed", type: "auth"})))
                 });
         }
+        */
 
         if(parsedData.type === "message"){
             

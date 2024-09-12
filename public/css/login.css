@@ -46,7 +46,7 @@ h2 {
     align-self: flex-start; 
 }
 
-.loginForm {
+.loginForm, .registerForm{
     display: flex;
     flex-direction: column;
     gap: 20px;

@@ -1,5 +1,6 @@
 const { auth } = require('../services/firebaseconfig.js'); 
 const { signInWithEmailAndPassword } = require('firebase/auth');
+const { createUserWithEmailAndPassword } = require("firebase/auth");
 
 const express = require("express")
 const { type } = require("os")
@@ -23,6 +24,19 @@ const loginUser = (email, password) => {
     });
 };
 
+const registerUser = (email, password) =>{
+    return createUserWithEmailAndPassword(auth, email, password)
+    .then((userCredential) => {
+        const user = userCredential.user;
+
+        return user;
+    })
+
+    .catch((error) =>{
+        console.error('Erro ao fazer login: ', error);
+        throw error;
+    })
+}
 
 const port = process.env.PORT || 3000
 const server = express()
@@ -53,12 +67,27 @@ server.get("/api/login", async (req,res) => {
     const senha = req.headers["senha"]
 
     return signInWithEmailAndPassword(auth, email, senha)
-    .then((userCredential) => {
+    .then(() => {
         res.status(200).send({success: true})
     })
 
     .catch((error) =>{
         console.error('Erro ao fazer login: ', error)
+        res.status(500).send({success: false})
+    })
+})
+
+server.get("/api/register", async (req,res) =>{
+    const email = req.headers["email"]
+    const senha = req.headers["senha"]
+
+    return createUserWithEmailAndPassword(auth, email, senha)
+    .then(()=>{
+        res.status(200).send({success: true})
+    })
+
+    .catch((error) =>{
+        console.error('Erro ao fazer login: ',error)
         res.status(500).send({success: false})
     })
 })

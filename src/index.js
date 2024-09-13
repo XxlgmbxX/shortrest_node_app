@@ -108,23 +108,6 @@ wss.on("connection", (ws) => {
     ws.on("message", (data) => {
         const parsedData = JSON.parse(data)
 
-        /*
-        if (parsedData.type === "login") {
-            //console.log(data.toString());
-
-            loginUser(parsedData.userEmail, parsedData.userPassword)
-                .then((authResponse) => {
-                    console.log("Usuário autenticado:", authResponse);
-                    wss.clients((client) =>client.send(JSON.stringify({auth: "success", type: "auth"})))
-
-                })
-                .catch((error) => {
-                    console.error('Erro ao fazer login:', error);
-                    wss.clients((client) =>client.send(JSON.stringify({auth: "failed", type: "auth"})))
-                });
-        }
-        */
-
         if(parsedData.type === "message"){
             
             console.log(data.toString())

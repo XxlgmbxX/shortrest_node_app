@@ -62,6 +62,10 @@ server.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
 });
 
+server.get("/campaigns", (req, res) =>{
+    res.sendFile(path.join(__dirname, '..', 'public','campaigns.html'))
+});
+
 server.post("/api/login", async (req,res) => {
     const email = req.headers["email"]
     const senha = req.headers["senha"]

@@ -62,7 +62,7 @@ server.get("/", (_req, res) => {
     res.sendFile(path.join(__dirname, '..', 'public', 'login.html'));
 });
 
-server.get("/api/login", async (req,res) => {
+server.post("/api/login", async (req,res) => {
     const email = req.headers["email"]
     const senha = req.headers["senha"]
 
@@ -77,7 +77,7 @@ server.get("/api/login", async (req,res) => {
     })
 })
 
-server.get("/api/register", async (req,res) =>{
+server.post("/api/register", async (req,res) =>{
     const email = req.headers["email"]
     const senha = req.headers["senha"]
 

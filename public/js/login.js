@@ -18,6 +18,7 @@
         
 
             const res = await fetch(`http://${window.location.host}/api/login`, {
+                method: "POST",
                 headers: {
                     "email": user.email,
                     "senha": user.password
@@ -34,6 +35,7 @@
             user.password = signUpPasswordInput.value;
 
             const res = await fetch(`http://${window.location.host}/api/register`,{
+                method: "POST",
                 headers: {
                     "email": user.email,
                     "senha": user.password

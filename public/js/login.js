@@ -33,7 +33,11 @@
             event.preventDefault();
             user.email = signUpEmailInput.value;
             user.password = signUpPasswordInput.value;
-
+            if(user.password.length < 6){
+                alert("Insira uma senha maior que 6 digitos")
+            }
+            
+            else{
             const res = await fetch(`http://${window.location.host}/api/register`,{
                 method: "POST",
                 headers: {
@@ -41,8 +45,12 @@
                     "senha": user.password
                 }
             });
-            const data = await res.json()
+            const data = await res.json();
             console.log(data.success);
+            }
+
+            signUpEmailInput.value = "";
+            signUpPasswordInput.value = "";
         };
         
         loginForm.addEventListener("submit", handleLogin);

@@ -24,8 +24,11 @@
                     "senha": user.password
                 }
             });
-            const data = await res.json()
-            console.log(data.success)
+                const data = await res.json()
+                console.log(data.success)
+                if(data.error){
+                    alert(`${data.error}`)
+                }
         };
 
         //fazer função de handle sign up
@@ -45,8 +48,11 @@
                     "senha": user.password
                 }
             });
-            const data = await res.json();
-            console.log(data.success);
+                const data = await res.json();
+                console.log(data.success);
+                if(data.error){
+                    alert(`${data.error}`)
+                }
             }
 
             signUpEmailInput.value = "";

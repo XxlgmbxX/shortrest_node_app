@@ -77,7 +77,7 @@ server.post("/api/login", async (req,res) => {
 
     .catch((error) =>{
         console.error('Erro ao fazer login: ', error.code)
-        res.status(500).send({success: false})
+        res.status(500).send({success: false, error: error.code.replace('auth/','')})
     })
 })
 
@@ -92,7 +92,8 @@ server.post("/api/register", async (req,res) =>{
 
     .catch((error) =>{
         console.error('Erro ao fazer login: ',error.code)
-        res.status(500).send({success: false})
+        res.status(500).send({success: false, error: error.code.replace('auth/','')})
+        
     })
 })
 

@@ -1,0 +1,43 @@
+@import url('https://fonts.googleapis.com/css2?family=Archivo+Black&display=swap');
+
+*{
+    padding: 0;
+    margin: 0;
+    font-family: "Archivo Black", sans-serif;
+}
+
+header{
+    height: 5em;
+    background-color: rgba(169, 169, 169, 1);
+
+    display: flex;
+    align-items: center;
+
+    justify-content: space-between;
+}
+
+.homepage{
+    height: 80%;
+    padding-left: 1%;
+}
+
+.options{
+    display: flex;
+    gap: 1em;
+
+    a{
+        text-decoration: none;
+        color: black;
+        font-size: 1.5em;
+    }
+
+}
+
+.profile{
+    height: 80%;
+    padding-right: 1%;
+}
+
+img{
+    height: 100%;
+}

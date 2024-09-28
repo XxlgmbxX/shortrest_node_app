@@ -16,28 +16,71 @@ header{
     justify-content: space-between;
 }
 
-.homepage{
-    height: 80%;
-    padding-left: 1%;
+    .homepage{
+        height: 80%;
+        padding-left: 1%;
+    }
+
+    .options{
+        display: flex;
+        gap: 1em;
+
+        a{
+            text-decoration: none;
+            color: black;
+            font-size: 1.5em;
+        }
+
+    }
+
+    .profile{
+        height: 80%;
+        padding-right: 1%;
+    }
+
+        img{
+            height: 100%;
+        }
+        
+
+.recent-games, .all-games {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+
+    margin-left: 3.5em;
+    margin-right: 3.5em;
 }
 
-.options{
-    display: flex;
-    gap: 1em;
-
-    a{
-        text-decoration: none;
-        color: black;
+    .recent-games p, .all-games p {
+        padding-top: 1.5em;
+        margin: 0;
+        padding-bottom: 1em;
         font-size: 1.5em;
     }
 
+.games-container{
+    display: flex;
+    width: 100%;
+    gap: 3.5em;
+
+    justify-content: flex-start;
+
+    overflow-y: auto;
+    white-space: nowrap;
 }
 
-.profile{
-    height: 80%;
-    padding-right: 1%;
-}
+    .game-box{
+        width: 30em;
+        height: 20em;
+        flex-shrink: 0;
+        border-radius: 8px;
+        overflow: hidden;
 
-img{
-    height: 100%;
-}
+        background-color: rgba(169, 169, 169, 0.35);
+    }
+
+        .game-box p{
+            padding: 0.5em 0 0.5em 0.5em;
+            background-color: rgba(169, 169, 169, 0.35);
+        }
